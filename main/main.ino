@@ -45,8 +45,12 @@ int display[NUM_PIXELS];
 int game_state = 0;
 bool button_players_last_state = 0;
 bool button_reset_last_state = 0;
+bool button_fire_player_1_last_state = 0;
+bool button_fire_player_2_last_state = 0;
 unsigned long debounce_button_players_time = 0;
 unsigned long debounce_button_reset_time = 0;
+unsigned long debounce_button_fire_player_1_time = 0;
+unsigned long debounce_button_fire_player_2_time = 0;
 unsigned long debounce_delay = 10;
 
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUM_PIXELS, PIN, NEO_GRB + NEO_KHZ800);
@@ -150,9 +154,28 @@ void check_reset_button()
       reset();
       button_reset_last_state = 1;
     }
-  }
-   
+  } 
 }
+
+bool check_fire_player_1()
+{
+  bool button_fire_player_1_state = !digitalRead(FIRE);
+  if (button_fire_player_1_state == 0)
+  {
+    button_fire_player_1_last_state = 0;
+    return false;
+  } 
+
+  if (button_fire_player_1_state == 1 && button_fire_player_1_last_state == 0)
+  {
+    button_fire_player_1_last_state = 1;
+    return true;
+  }
+
+  return false;
+}
+
+
 
 void reset()
 {
@@ -163,10 +186,12 @@ void loop()
 {
 
   if (game_state == 0) loop_intro();
-  if (game_state == 1) loop_game_01();
+  if (game_state == 10) intro_01();
+  if (game_state == 11) loop_01();
 
   check_players_button();
   check_reset_button();
 
   pixels.show();
+
 }
