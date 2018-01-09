@@ -111,7 +111,7 @@ void check_collision_01()
   if (collision_object == 1)
   {
     health-=4;
-    tone(8, NOTE_C4, 50);
+    //tone(8, NOTE_C4, 50);
     if (health <0) health = 0;
   }
   
@@ -120,7 +120,7 @@ void check_collision_01()
 void loop_01()
 {
 
-  if ( check_fire_player_1() ) tone(8, NOTE_D8, 50);
+  if ( check_fire_player_1() ) Serial.println("FIRE");
   
   if (millis() > last_time_player + delay_player)
   {

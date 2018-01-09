@@ -6,7 +6,8 @@
 */
 
 #include <Adafruit_NeoPixel.h>
-#include "pitches.h"
+#include "pitches.h" // the notes
+
 
 /*
 
@@ -15,17 +16,36 @@
 */
 
 
+// Values for Arduino Uno
+
+// GROUND blue         
+#define FIRE            13  // red
+#define RIGHT           12  // white
+#define LEFT            11  // orange
+#define DOWN            10  // greeen
+#define UP              9   // yellow
+#define BUZZER          8   // white
+#define LED_PLAYER_1    7   // red
+#define LED_PLAYER_2    6   // yellow
+#define BUTTON_PLAYERS  5   // yellow
+#define BUTTON_RESET    4   // yellow
+#define PIN             2   // green
+
+
+// Values for Arduino Due
+/*
 #define FIRE            13
 #define RIGHT           12
 #define LEFT            11
 #define DOWN            10
 #define UP              9
-#define PIN             2
 #define BUZZER          8
 #define LED_PLAYER_1    7
 #define LED_PLAYER_2    6
 #define BUTTON_PLAYERS  5
 #define BUTTON_RESET    4
+#define PIN             2
+*/
 
 #define STRIP_HEIGHT    10
 #define STRIP_WIDTH     10
@@ -179,7 +199,7 @@ bool check_fire_player_1()
 
 void reset()
 {
-  tone(8, NOTE_C4, 50);
+ // tone(8, NOTE_C4, 50);
 }
 
 void loop()
